@@ -9,4 +9,4 @@ crate-type = ["cdylib"]
 [dependencies]
 time = "*"
 rayon = "*"
-wasm-bindgen = "0.2"
+wasm-bindgen = "*"

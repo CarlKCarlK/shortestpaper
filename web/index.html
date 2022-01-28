@@ -71,11 +71,12 @@
 
 
     <script type="module">
-        import init, { greet } from "./../pkg/fifth.js";
+        import init, { greet, search } from "./../pkg/fifth.js";
         init()
             .then(() => {
-                alert("Error: Must be a positive integer");
-                greet("WebAssembly")
+                alert(search(20));
+                greet("WebAssembly");
+                alert("Error: Must be a positive integer")
             });
 
         function fifths() {
@@ -86,7 +87,7 @@
                 return;
             }
 
-            var html = 'Hello ' + end;
+            var html = search(end); //'Hello ' + end;
 
             document.getElementById('result').innerHTML = html;
         }
