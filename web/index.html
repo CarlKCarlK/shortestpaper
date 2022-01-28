@@ -43,6 +43,33 @@
         </tbody>
     </table>
 
+    <!-- <script type="module">
+        function fifths() {
+            var end = parseInt(document.getElementById('end').value);
+
+            if (isNaN(end) || end <= 0) {
+                alert("Error: Must be a positive integer");
+                return;
+            }
+
+            var html = 'Hello ' + end;
+
+            document.getElementById('result').innerHTML = html;
+        }
+
+        document.getElementById('yields').addEventListener('click', fifths);
+
+        function clickPress(event) {
+            if (event.keyCode == 13) {
+                fifths();
+            }
+        }
+
+    </script>
+ -->
+
+
+
     <script type="module">
         import init, { greet } from "./../pkg/fifth.js";
         init()
@@ -50,7 +77,32 @@
                 alert("Error: Must be a positive integer");
                 greet("WebAssembly")
             });
+
+        function fifths() {
+            var end = parseInt(document.getElementById('end').value);
+
+            if (isNaN(end) || end <= 0) {
+                alert("Error: Must be a positive integer");
+                return;
+            }
+
+            var html = 'Hello ' + end;
+
+            document.getElementById('result').innerHTML = html;
+        }
+
+        function clickPress(event) {
+            if (event.keyCode == 13) {
+                fifths();
+            }
+        }
+
+
+        document.getElementById('yields').addEventListener('click', fifths);
+        document.getElementById('end').addEventListener('keyup', clickPress);
+
     </script>
+
 </body>
 
 </html>
