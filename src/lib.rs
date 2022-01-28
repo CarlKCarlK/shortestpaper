@@ -9,6 +9,8 @@ use time::Instant;
 // !!!return the results equations
 // !!!return the running time
 // !!!return on equation at a time
+// !!!release
+// !!!small
 
 use wasm_bindgen::prelude::*;
 
@@ -26,7 +28,7 @@ pub fn greet(name: &str) {
 
 #[wasm_bindgen]
 pub fn search(end: usize) -> String {
-    // table.len < ((end-1)^5*4)^(1/5) = (end-1)*4^(1/5) < (end-1)*1.32
+    // table.len < ((end-1)<sup>5</sup>*4)^(1/5) = (end-1)*4^(1/5) < (end-1)*1.32
     let table_len = (1.32 * (end - 1) as f64) as usize;
     let mut fifth: Vec<u128> = vec![];
     let mut valueset: HashSet<u128> = HashSet::new();
@@ -36,7 +38,7 @@ pub fn search(end: usize) -> String {
         fifth.push(value);
     }
 
-    let count: Vec<Vec<String>> = (4..end)
+    let count: String = (4..end)
         //.into_par_iter()
         .map(|n4| {
             let mut subcount: Vec<String> = vec![];
@@ -56,7 +58,7 @@ pub fn search(end: usize) -> String {
 
                         if valueset.contains(&sum) {
                             let by5: u128 = ((sum as f64).powf(0.2f64) + 0.5f64) as u128;
-                            let found = format!("{}^5+{}^5+{}^5+{}^5={}^5", n4, n3, n2, n1, by5);
+                            let found = format!("<p>{n1}<sup>5</sup>+{n2}<sup>5</sup>+{n3}<sup>5</sup>+{n4}<sup>5</sup>={by5}<sup>5</sup></p>");
 
                             // println!("{:?} seconds for whatever you did.", start.elapsed());
                             subcount.push(found);
@@ -70,7 +72,8 @@ pub fn search(end: usize) -> String {
             }
             subcount
         })
-        .collect();
+        .flatten()
+        .collect::<Vec<String>>().join("");
 
     // println!("{} found in {:?} seconds.", count, start.elapsed());
     return format!("{:#?}", count);
@@ -78,60 +81,60 @@ pub fn search(end: usize) -> String {
     //return format!("{}", end + 2);
 }
 
-pub fn searchx(end: usize) -> String {
-    let start = Instant::now();
+// pub fn searchx(end: usize) -> String {
+//     let start = Instant::now();
 
-    // table.len < ((end-1)^5*4)^(1/5) = (end-1)*4^(1/5) < (end-1)*1.32
-    let table_len = (1.32 * (end - 1) as f64) as usize;
-    let mut fifth: Vec<u128> = vec![];
-    let mut valueset: HashSet<u128> = HashSet::new();
-    for i in 0..table_len {
-        let value = (i as u128).pow(5);
-        valueset.insert(value);
-        fifth.push(value);
-    }
-    println!(
-        "Table of size {} created in {:?}",
-        table_len,
-        start.elapsed()
-    );
+//     // table.len < ((end-1)<sup>5</sup>*4)^(1/5) = (end-1)*4^(1/5) < (end-1)*1.32
+//     let table_len = (1.32 * (end - 1) as f64) as usize;
+//     let mut fifth: Vec<u128> = vec![];
+//     let mut valueset: HashSet<u128> = HashSet::new();
+//     for i in 0..table_len {
+//         let value = (i as u128).pow(5);
+//         valueset.insert(value);
+//         fifth.push(value);
+//     }
+//     println!(
+//         "Table of size {} created in {:?}",
+//         table_len,
+//         start.elapsed()
+//     );
 
-    let count: usize = (4..end)
-        .into_par_iter()
-        .map(|n4| {
-            let mut subcount = 0;
-            let mut sum = fifth[n4];
+//     let count: usize = (4..end)
+//         .into_par_iter()
+//         .map(|n4| {
+//             let mut subcount = 0;
+//             let mut sum = fifth[n4];
 
-            for n3 in 3..n4 {
-                let fn3 = fifth[n3];
-                sum += fn3;
+//             for n3 in 3..n4 {
+//                 let fn3 = fifth[n3];
+//                 sum += fn3;
 
-                for n2 in 2..n3 {
-                    let fn2 = fifth[n2];
-                    sum += fn2;
+//                 for n2 in 2..n3 {
+//                     let fn2 = fifth[n2];
+//                     sum += fn2;
 
-                    for n1 in 1..n2 {
-                        let fn1 = fifth[n1];
-                        sum += fn1;
+//                     for n1 in 1..n2 {
+//                         let fn1 = fifth[n1];
+//                         sum += fn1;
 
-                        if valueset.contains(&sum) {
-                            let by5: u128 = ((sum as f64).powf(0.2f64) + 0.5f64) as u128;
-                            println!("{}^5+{}^5+{}^5+{}^5={}^5", n4, n3, n2, n1, by5);
+//                         if valueset.contains(&sum) {
+//                             let by5: u128 = ((sum as f64).powf(0.2f64) + 0.5f64) as u128;
+//                             println!("{}<sup>5</sup>+{}<sup>5</sup>+{}<sup>5</sup>+{}<sup>5</sup>={}<sup>5</sup>", n4, n3, n2, n1, by5);
 
-                            println!("{:?} seconds for whatever you did.", start.elapsed());
-                            subcount += 1;
-                            // return;
-                        }
-                        sum -= fn1
-                    }
-                    sum -= fn2;
-                }
-                sum -= fn3
-            }
-            subcount
-        })
-        .sum();
+//                             println!("{:?} seconds for whatever you did.", start.elapsed());
+//                             subcount += 1;
+//                             // return;
+//                         }
+//                         sum -= fn1
+//                     }
+//                     sum -= fn2;
+//                 }
+//                 sum -= fn3
+//             }
+//             subcount
+//         })
+//         .sum();
 
-    println!("{} found in {:?} seconds.", count, start.elapsed());
-    return format!("{}", count);
-}
+//     println!("{} found in {:?} seconds.", count, start.elapsed());
+//     return format!("{}", count);
+// }
