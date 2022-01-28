@@ -4,7 +4,21 @@ use rayon::iter::IntoParallelIterator;
 use rayon::prelude::*;
 use time::Instant;
 
-fn main() {
+use wasm_bindgen::prelude::*;
+
+// See https://developer.mozilla.org/en-US/docs/WebAssembly/Rust_to_wasm
+// See https://rustwasm.github.io/book/game-of-life/code-size.html#shrinking-wasm-size
+#[wasm_bindgen]
+extern "C" {
+    pub fn alert(s: &str);
+}
+
+#[wasm_bindgen]
+pub fn greet(name: &str) {
+    alert(&format!("Hello, {}!", name));
+}
+
+fn later() {
     let start = Instant::now();
 
     let end = 200usize;
