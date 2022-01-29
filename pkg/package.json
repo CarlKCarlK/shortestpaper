@@ -1,0 +1,12 @@
+{
+  "name": "fifth",
+  "version": "0.1.0",
+  "files": [
+    "fifth_bg.wasm",
+    "fifth.js",
+    "fifth.d.ts"
+  ],
+  "module": "fifth.js",
+  "types": "fifth.d.ts",
+  "sideEffects": false
+}
