@@ -2,15 +2,18 @@ use std::{collections::HashSet, u128};
 extern crate time;
 use rayon::iter::IntoParallelIterator;
 use rayon::prelude::*;
-use time::Instant;
 
 // !!!cmk run parallel
+//      see https://rustwasm.github.io/docs/wasm-bindgen/examples/raytrace.html?highlight=panic#building-the-demo
 // !!!cmk give sign that it is running
 // !!!return the results equations
 // !!!return the running time
 // !!!return on equation at a time
 // !!!release
 // !!!small
+// !!! possible progress bar: https://medium.com/geekculture/rusting-javascript-with-webassembly-632405ba5a42
+// !!! with 500 it pops up a "this page is slow" warning
+// !!! add README.md etc
 
 use wasm_bindgen::prelude::*;
 
@@ -76,7 +79,10 @@ pub fn search(end: usize) -> String {
         .collect::<Vec<String>>().join("");
 
     // println!("{} found in {:?} seconds.", count, start.elapsed());
-    return format!("{:#?}", count);
+    return count; //format!("{}", count);
+                  //     "{count}<p><em>elapsed time: </em></p>", //{time:?}
+
+    // );
 
     //return format!("{}", end + 2);
 }

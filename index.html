@@ -18,7 +18,7 @@
                     <H3 style="text-align:center">BY RUST AND WASM</H3>
                     <H4 style="text-align:center">Communicated by C. M. Kadie, January 28, 2022</H4>
                     <p>&nbsp; &nbsp; &nbsp; A direct search up to
-                        <input onkeypress="clickPress(event)" id="end" size=7 placeholder=200>
+                        <input onkeypress="clickPress(event)" id="end" size=4 placeholder=200>
                         on your Web Browser
                         <button id="yields">yields</button>
                     <div style="text-align:center" id="result">...</div>
@@ -47,25 +47,30 @@
 
 
     <script type="module">
-        import init, { greet, search } from "./../pkg/fifth.js";
+        import init, { greet, search } from "./pkg/fifth.js";
         init()
             .then(() => {
                 alert(search(20));
-                greet("WebAssembly");
-                alert("Error: Must be a positive integer")
+                greet("WebAssembly")
+                //alert("Error: Must be a positive integer")
             });
 
         function fifths() {
-            var end = parseInt(document.getElementById('end').value);
+            var end_string = document.getElementById('end').value
+            if (end_string == "") { end_string = "200"; }
+            var end = parseInt(end_string);
 
             if (isNaN(end) || end <= 0) {
                 alert("Error: Must be a positive integer");
                 return;
             }
 
-            var html = search(end); //'Hello ' + end;
-
-            document.getElementById('result').innerHTML = html;
+            var start_time = performance.now();
+            // document.getElementById('result').innerHTML = "<em>working</em>";
+            // document.location.reload(false);
+            var result = search(end);
+            var delta = performance.now() - start_time;
+            document.getElementById('result').innerHTML = result + "<p><em>elapsed time: " + (delta / 1000.0).toFixed(2) + " seconds</em></p>";
         }
 
         function clickPress(event) {
