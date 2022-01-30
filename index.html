@@ -54,12 +54,12 @@
 
 
     <script type="module">
-        import init, { greet, search } from "./pkg/fifth.js";
+        import init, { greet, search } from "./pkg/shortestpaper.js";
         init()
             .then(() => {
-                // alert(search(20));
-                // greet("WebAssembly")
-                //alert("Error: Must be a positive integer")
+                alert("Error: Must be a positive integer")
+                greet("WebAssembly")
+                alert(search(20));
             });
 
         function fifths() {

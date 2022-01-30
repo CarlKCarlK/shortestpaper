@@ -1,12 +1,12 @@
 {
-  "name": "fifth",
+  "name": "shortestpaper",
   "version": "0.1.0",
   "files": [
-    "fifth_bg.wasm",
-    "fifth.js",
-    "fifth.d.ts"
+    "shortestpaper_bg.wasm",
+    "shortestpaper.js",
+    "shortestpaper.d.ts"
   ],
-  "module": "fifth.js",
-  "types": "fifth.d.ts",
+  "module": "shortestpaper.js",
+  "types": "shortestpaper.d.ts",
   "sideEffects": false
 }

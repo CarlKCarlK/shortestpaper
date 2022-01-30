@@ -1,14 +1,13 @@
-use std::{collections::HashSet, u128};
+//use std::{collections::HashSet, u128};
 extern crate time;
-use rayon::iter::IntoParallelIterator;
-use rayon::prelude::*;
+use fxhash::FxHashSet;
+// use rayon::iter::IntoParallelIterator;
+// use rayon::prelude::*;
 
 // !!!cmk run parallel
 //      see https://rustwasm.github.io/docs/wasm-bindgen/examples/raytrace.html?highlight=panic#building-the-demo
 // !!!cmk give sign that it is running
-// !!!return the results equations
-// !!!return the running time
-// !!!return on equation at a time
+// !!!return one equation at a time
 // !!!release
 // !!!small
 // !!! possible progress bar: https://medium.com/geekculture/rusting-javascript-with-webassembly-632405ba5a42
@@ -31,10 +30,11 @@ pub fn greet(name: &str) {
 
 #[wasm_bindgen]
 pub fn search(end: usize) -> String {
-    // table.len < ((end-1)<sup>5</sup>*4)^(1/5) = (end-1)*4^(1/5) < (end-1)*1.32
+    // table.len < ((end-1)^5*4)^(1/5) = (end-1)*4^(1/5) < (end-1)*1.32
     let table_len = (1.32 * (end - 1) as f64) as usize;
     let mut fifth: Vec<u128> = vec![];
-    let mut valueset: HashSet<u128> = HashSet::new();
+    //let mut valueset: HashSet<u128> = HashSet::new();
+    let mut valueset: FxHashSet<u128> = Default::default();
     for i in 0..table_len {
         let value = (i as u128).pow(5);
         valueset.insert(value);
