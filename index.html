@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>COUNTEREXAMPLE TO EULER'S CONJECTURE ON SUMS OF LIKE POWERS</title>
+    <title>Shortest Paper</title>
 </head>
 
 <body>
@@ -50,16 +50,17 @@
         </tbody>
     </table>
 
-
-
+    <!-- <script>
+        alert("Hello, world!");
+    </script> -->
 
     <script type="module">
         import init, { greet, search } from "./pkg/shortestpaper.js";
         init()
             .then(() => {
                 alert("Error: Must be a positive integer")
-                greet("WebAssembly")
-                alert(search(20));
+                // greet("WebAssembly")
+                // alert(search(20));
             });
 
         function fifths() {
@@ -73,11 +74,12 @@
             }
 
             var start_time = performance.now();
-            // document.getElementById('result').innerHTML = "<em>working</em>";
-            // document.location.reload(false);
-            var result = search(end);
-            var delta = performance.now() - start_time;
-            document.getElementById('result').innerHTML = result + "<p><em>elapsed time: " + (delta / 1000.0).toFixed(2) + " seconds</em></p>";
+            document.getElementById('result').innerHTML = "<em>working</em>";
+            setTimeout(() => {
+                var result = search(end);
+                var delta = performance.now() - start_time;
+                document.getElementById('result').innerHTML = result + "<p><em>elapsed time: " + (delta / 1000.0).toFixed(2) + " seconds</em></p>";
+            }, 0);
         }
 
         function clickPress(event) {
