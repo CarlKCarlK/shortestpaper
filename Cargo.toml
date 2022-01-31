@@ -10,7 +10,5 @@ crate-type = ["cdylib"]
 lto = true
 
 [dependencies]
-time = "*"
-rayon = "*"
 wasm-bindgen = "*"
 fxhash = "*"

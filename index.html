@@ -16,14 +16,15 @@
                     <h2 style="text-align:center">COUNTEREXAMPLE TO EULER'S CONJECTURE<br>
                         ON SUMS OF LIKE POWERS</h2>
                     <H3 style="text-align:center">BY RUST AND WASM</H3>
-                    <H4 style="text-align:center">Communicated by C. M. Kadie, January 28, 2022</H4>
+                    <H4 style="text-align:center">Communicated by Rust Shortest Paper Team[<a href=#team>3</a>], January
+                        30, 2022</H4>
                     <p>&nbsp; &nbsp; &nbsp; A direct search up to
                         <input onkeypress="clickPress(event)" id="end" size=4 placeholder=200>
-                        in your Web Browser
-                        <button id="yields">yields</button>
+                        in your Web Browser yields
+                        <button id="yields">Go!</button>
                     <div style="text-align:center" id="result">...</div>
                     <p>as the smallest instances in which four fifth powers sum to a fifth power. This
-                        is a counterexample(s) to a conjecture by Euler[1] that at least <em>n</em> <em>n</em>th powers
+                        is a counterexample to a conjecture by Euler[1] that at least <em>n</em> <em>n</em>th powers
                         are
                         required
                         to sum to an <em>n</em>th power, <em>n</em>&gt;2. </p>
@@ -36,9 +37,15 @@
                             href="https://www.ams.org/journals/bull/1966-72-06/S0002-9904-1966-11654-3/S0002-9904-1966-11654-3.pdf">(pdf
                             format)</a>
                     </p>
-                    <p>&nbsp;&nbsp;3. Kadie, C. M. (2022).
-                        <a
-                            href="https://github.com/CarlKCarlK/shortestpaper">https://github.com/CarlKCarlK/shortestpaper</a>,
+                    <div id="team" />
+                    <p>&nbsp;&nbsp;
+                        3. Kadie, C. M. <a href=https://github.com/CarlKCarlK>🡕</a>, HundredLuck <a
+                            href=https://www.reddit.com/user/HundredLuck>🡕</a>,
+                        yyogo<a href=https://github.com/yyogo>🡕</a>,
+                        A1oso<a href=https://www.reddit.com/user/A1oso />🡕</a>
+                        (2022).
+                        <a href=" https://github.com/CarlKCarlK/shortestpaper">
+                            https://github.com/CarlKCarlK/shortestpaper</a>,
                     </p>
 
                     <p>&nbsp;&nbsp;4. <em><a
@@ -49,10 +56,6 @@
             </tr>
         </tbody>
     </table>
-
-    <!-- <script>
-        alert("Hello, world!");
-    </script> -->
 
     <script type="module">
         import init, { greet, search } from "./pkg/shortestpaper.js";
